@@ -21,4 +21,12 @@ class Movie extends Model
         'rating',
         'status'
     ];
+
+    public function comment() {
+        return $this->belongsToMany(Comment::class);
+    }
+
+    public function genre() {
+        return $this->belongsToMany(Genre::class);
+    }
 }

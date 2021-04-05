@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'userID',
+        'comment',
+        'upvotes',
+        'downvotes'
+    ];
+
+    public function movie() {
+        return $this->belongsToMany(Movie::class);
+    }
+    
 }
