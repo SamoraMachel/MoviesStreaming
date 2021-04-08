@@ -1,6 +1,50 @@
-@extends('layouts.app')
+@extends('layouts.main.backbone')
 
-@section('content')
+@section('mainBody')
+
+<div class="sign section--bg" data-bg="{{ asset('storage/images/section.jpg') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sign__content">
+                    <!-- authorization form -->
+                    <form method="POST" action="{{ route('password.confirm') }}" class="sign__form">
+                        @csrf
+
+                        <a href="" class="sign__logo">
+                            {{-- <img src="img/logo.svg" alt=""> --}}
+                            <h2>Phoenix Movies</h2>
+                        </a>
+
+                        <div class="sign__group">
+                            <input id="password" type="password" placeholder="Password" class="sign__input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        </div>
+                        
+                        <button class="sign__btn" type="submit">Confirm Password</button>
+
+                        @if (Route::has('password.request'))
+                            <span class="sign__text">
+                                <a href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            </span>
+                            
+                        @endif
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </form>
+                    <!-- end authorization form -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -45,5 +89,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

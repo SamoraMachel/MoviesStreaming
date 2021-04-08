@@ -1,16 +1,8 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layouts.main.backbone')
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="{{ asset('js/app.js') }}"></script>
-    <title>Phoenix Movies</title>
-</head>
-<body>
-
-    <!-- header -->
+@section('mainBody')
+	
+	<!-- header -->
 	<header class="header">
 		<div class="header__wrap">
 			<div class="container">
@@ -18,8 +10,9 @@
 					<div class="col-12">
 						<div class="header__content">
 							<!-- header logo -->
-							<a href="index.html" class="header__logo">
-								<img src="img/logo.svg" alt="">
+							<a href=" {{ route('userHome') }}" class="header__logo">
+								{{-- <img src="" alt=""> --}}
+								<h2>Phoenix</h2>
 							</a>
 							<!-- end header logo -->
 
@@ -27,7 +20,8 @@
 							<ul class="header__nav">
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="header__nav-link" href="#" role="button" id="dropdownMenuHome" aria-haspopup="true" aria-expanded="false">Home</a>
+									<a class="header__nav-link" href="{{ route('userHome') }}">Home</a>
+
 								</li>
 								<!-- end dropdown -->
 
@@ -77,21 +71,9 @@
 									<i class="icon ion-ios-search"></i>
 								</button>
 
-								<!-- dropdown -->
-								<div class="dropdown header__lang">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
-
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuLang">
-										<li><a href="#">English</a></li>
-										<li><a href="#">Spanish</a></li>
-										<li><a href="#">Russian</a></li>
-									</ul>
-								</div>
-								<!-- end dropdown -->
-
-								<a href="signin.html" class="header__sign-in">
+								<a href="{{ route('userProfile') }}" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
-									<span>sign in</span>
+									<span>{{ Auth::user()->name }}</span>
 								</a>
 							</div>
 							<!-- end header auth -->
@@ -126,7 +108,69 @@
 		<!-- end header search -->
 	</header>
 	<!-- end header -->
+
     
     @yield('contentMain')
-</body>
-</html>
+
+
+	<!-- footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				
+
+				<!-- footer list -->
+				<div class="col-6 col-sm-4 col-md-3">
+					<h6 class="footer__title">Resources</h6>
+					<ul class="footer__list">
+						<li><a href="">About Us</a></li>
+						<li><a href="">Pricing Plan</a></li>
+						<li><a href="">Help</a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer list -->
+				<div class="col-6 col-sm-4 col-md-3">
+					<h6 class="footer__title">Legal</h6>
+					<ul class="footer__list">
+						<li><a href="">Terms of Use</a></li>
+						<li><a href="">Privacy Policy</a></li>
+						<li><a href="">Security</a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer list -->
+				<div class="col-12 col-sm-4 col-md-3">
+					<h6 class="footer__title">Contact</h6>
+					<ul class="footer__list">
+						<li><a href="tel:+25424484152">0724484152</a></li>
+						<li><a href="mailto:support@moviego.com">samoraok@gmail.com</a></li>
+					</ul>
+					<ul class="footer__social">
+						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
+						<li class="instagram"><a href="https://www.instagram.com/m.a.c.h.e.l_/"><i class="icon ion-logo-instagram"></i></a></li>
+						<li class="twitter"><a href="https://twitter.com/machel_dev"><i class="icon ion-logo-twitter"></i></a></li>
+						<li class="vk"><a href="https://github.com/SamoraMachel"><i class="icon ion-logo-github"></i></a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer copyright -->
+				<div class="col-12">
+					<div class="footer__copyright">
+						<small>© Phoenix Movies. Create by <a href="https://twitter.com/machel_dev" target="_blank">Samora Machel</a></small>
+						<ul>
+							<li><a href="">Terms of Use</a></li>
+							<li><a href="">Privacy Policy</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- end footer copyright -->
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+
+@endsection

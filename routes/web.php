@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UserContoroller;
 use Illuminate\Support\Facades\Route;
+
+use function PHPUnit\Framework\isNull;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +18,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(isNull(Auth::user())) {
+        return redirect("/login");
+    } else {
+        return redirect(route('home'));
+    }
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 
 Route::prefix('/user')->middleware('auth')->group(function() {
-    Route::resource('/movie', MovieController::class);
+    Route::get('/profile', [MovieController::class, 'profile'])->name('userProfile');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('userHome');
+    Route::put('/profile', [UserContoroller::class, 'update'])->name('user.update');
 });

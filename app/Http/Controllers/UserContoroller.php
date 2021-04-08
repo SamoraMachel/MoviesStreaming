@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\MovieValidationRequest;
+use \App\Models\User;
 
-class MovieController extends Controller
+class UserContoroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view('Movie.index');
+        //
     }
 
     /**
@@ -33,9 +33,9 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MovieValidationRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
+        //
     }
 
     /**
@@ -57,7 +57,7 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -67,9 +67,13 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::where('id', $request->input('id')) 
+                    ->update([
+                        'name' => $request->input('username'),
+                        'email'=> $request->input('email') ]);
+        return redirect(route('userProfile'));
     }
 
     /**
@@ -81,10 +85,5 @@ class MovieController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    // gets the profile of the user
-    public function profile() {
-        return view('Movie.profile');
     }
 }
