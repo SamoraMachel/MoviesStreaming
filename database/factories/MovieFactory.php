@@ -22,7 +22,18 @@ class MovieFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->title(),
+            'description' => $this->faker->paragraph(),
+            'releaseYear' => $this->faker->year(),
+            'runningTime' => $this->faker->time(),
+            'quality' => $this->faker->word(),
+            'age' => $this->faker->numberBetween(6, 50),
+            'rating' => $this->faker->numberBetween(1, 10),
+            'views' => $this->faker->numberBetween(0, 5000),
+            'coverPic' => $this->faker->filePath(),
+            'video' => $this->faker->filePath(),
+            'trailer' => $this->faker->filePath(),
+            'status' => $this->faker->word()
         ];
     }
 }

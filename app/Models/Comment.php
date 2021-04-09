@@ -19,5 +19,9 @@ class Comment extends Model
     public function movie() {
         return $this->belongsToMany(Movie::class);
     }
+
+    public function series() {
+        return $this->belongsToMany(Series::class);
+    }
     
 }

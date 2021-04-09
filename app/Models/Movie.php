@@ -19,10 +19,12 @@ class Movie extends Model
         'quality',
         'video',
         'rating',
-        'status'
+        'status',
+        'views',
+        'trailer'
     ];
 
-    public function comment() {
+    public function comments() {
         return $this->belongsToMany(Comment::class);
     }
 

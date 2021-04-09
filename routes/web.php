@@ -34,4 +34,6 @@ Route::prefix('/user')->middleware('auth')->group(function() {
     Route::get('/profile', [MovieController::class, 'profile'])->name('userProfile');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('userHome');
     Route::put('/profile', [UserContoroller::class, 'update'])->name('user.update');
+
+    Route::get('/comments', [MovieController::class], 'comments')->name('movies.comment');
 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+class CreateSeasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('seasons', function (Blueprint $table) {
             $table->id();
-            $table->integer('userID')->unsigned();
-            $table->mediumText('comment');
-            $table->integer('upvotes')->unsigned();
-            $table->integer('downvotes')->unsigned();
+            $table->integer('seriesID')->unsigned();
+            $table->string('title');
+            $table->string('description');
             $table->timestamps();
-            $table->foreign('userID')
+            $table->foreign('seriesID')
                 ->references('id')
-                ->on('users')
+                ->on('series')
                 ->onDelete('cascade');
         });
     }
@@ -34,6 +33,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('seasons');
     }
 }

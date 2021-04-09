@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\MovieValidationRequest;
-use App\Models\Movie;
 
-class MovieController extends Controller
+class SeriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view('Movie.index');
+        //
     }
 
     /**
@@ -34,9 +32,9 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MovieValidationRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
+        //
     }
 
     /**
@@ -58,7 +56,7 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -83,18 +81,4 @@ class MovieController extends Controller
     {
         //
     }
-
-    // gets the profile of the user
-    public function profile() {
-        return view('Movie.profile');
-    }
-
-    // get all comments of a certain movie 
-    public function getComments($id) {
-        $movie = Movie::find($id);
-        $comments = $movie->comments();
-        return $comments;
-    }
-
-
 }

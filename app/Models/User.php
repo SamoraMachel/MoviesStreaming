@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // gets all the comment the user has ever made
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
