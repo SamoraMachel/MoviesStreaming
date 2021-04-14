@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UserContoroller;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 use function PHPUnit\Framework\isNull;
@@ -21,7 +22,7 @@ Route::get('/', function () {
     if(isNull(Auth::user())) {
         return redirect("/login");
     } else {
-        return redirect(route('home'));
+        return redirect(route('userHome'));
     }
 });
 
@@ -32,8 +33,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 
 Route::prefix('/user')->middleware('auth')->group(function() {
     Route::get('/profile', [MovieController::class, 'profile'])->name('userProfile');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('userHome');
+    Route::get('/home', [HomeController::class, 'index'])->name('userHome');
     Route::put('/profile', [UserContoroller::class, 'update'])->name('user.update');
 
     Route::get('/comments', [MovieController::class], 'comments')->name('movies.comment');
+});
+
+
+Route::prefix('/admin')->middleware('auth')->group(function() {
+    Route::post('movie', 'MovieController@store')->name('movie.add');
 });
